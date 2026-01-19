@@ -26,8 +26,7 @@ WITH
 		maximum_nights
 	FROM {{ source('raw_airbnb_data', 'listings')}}
     WHERE --DBT_VALID_TO IS NULL
-       -- AND 
-       id IS NOT NULL
+       -- AND id IS NOT NULL
        AND listing_url IS NOT NULL
       AND LENGTH(listing_url) > 0
         AND (listing_url LIKE 'https://%'
