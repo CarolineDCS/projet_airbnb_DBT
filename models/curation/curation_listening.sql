@@ -1,7 +1,7 @@
 WITH
     to_join_verified AS
     (SELECT host_id
-    FROM  {{ source('raw_airbnb_data', 'hosts')}} ),
+    FROM  {{ ref("curation_host")}} ),
     listings_raw AS 
 	(SELECT 
 		id AS listing_id,
@@ -10,7 +10,7 @@ WITH
 		description,
 		description IS NOT NULL has_description,
 		neighbourhood_overview,
-		neighbourhood_overview IS NOT NULL AS has_neighrbourhood_description,
+		neighbourhood_overview IS NOT NULL AS has_neighbourhood_description,
 		host_id,
 		latitude,
 		longitude,
@@ -21,12 +21,12 @@ WITH
 		bedrooms,
 		beds,
 		amenities,
-        try_cast(split_part(price, '$', 1) as float) as price,
+        try_cast(split_part(price, '$', 2) as float) as price,
 		minimum_nights,
 		maximum_nights
-	FROM {{ source('raw_airbnb_data', 'listings')}}
-    WHERE --DBT_VALID_TO IS NULL
-       -- AND id IS NOT NULL
+	FROM {{ ref("listening_snapshot")}}
+    WHERE DBT_VALID_TO IS NULL
+       AND id IS NOT NULL
        AND listing_url IS NOT NULL
       AND LENGTH(listing_url) > 0
         AND (listing_url LIKE 'https://%'
@@ -50,6 +50,7 @@ WITH
         AND beds >0
 		AND amenities IS NOT NULL
         AND price IS NOT NULL
+        AND price RLIKE '\\$([[:space:]]+)?[0-9]+(\\.[0-9][0-9])?'
         AND try_cast(split_part(price, '$', 2) as float)>0
         AND minimum_nights IS NOT NULL
         AND minimum_nights > 0
