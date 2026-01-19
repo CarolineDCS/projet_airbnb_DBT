@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: raw_airbnb_data
+    database: airbnb
+    schema: curation
+    tables:
+      - name: curation_host
+        description: "Personne mettant en location des biens sur airbnb"
+        columns:
+          - name: host_id
+            description: "Identifiant unique de l'hôte"
+            tests:
+               - unique
+               - not_null
+          - name: host_name
+            description: "Nom de l'hôte"
+            tests:
+               - not_null
+          - name: host_since
+            description: "Date d'inscription de l'hôte"
+            tests:
+               - not_null
+          - name: host_location
+            description: "Ville et pays de l'hôte"
+            tests:
+               - not_null
+          - name: host_city
+            description: "Ville l'hôte"
+            tests:
+               - not_null
+          - name: host_country
+            description: "pays de l'hôte"
+            tests:
+               - not_null
+          - name : response_rate
+            description: "taux de réponse de l'hôte"
+          - name: is_superhost
+            description: "Indicateur si l'hôte a le statut superhost"
+            tests:
+               - not_null
+               - accepted_values:
+                   arguments:
+                     values: ['t', 'f']
+          - name: host_neighbourhood
+            description: "Quartier de l'hôte"
+            tests:
+               - not_null
+          - name: is_identity_verified
+            description: "Indicateur si l'identité de l'hôte a été vérifiée"
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                     values: ['t', 'f']
