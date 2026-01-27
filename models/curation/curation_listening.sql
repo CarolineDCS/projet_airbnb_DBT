@@ -21,9 +21,8 @@ WITH
 		bedrooms,
 		beds,
 		amenities,
-        trim(try_to_double(REPLACE(split_part(price, '$', 2), ',', ''))) as price,
-		minimum_nights,
-		maximum_nights
+        {{ extraire_prix_a_partir_dun_caractere('price', '$') }} as price,
+        maximum_nights
 	FROM {{ ref("listening_snapshot")}}
     WHERE DBT_VALID_TO IS NULL
     AND host_id IN (SELECT host_id FROM to_join_verified) 
