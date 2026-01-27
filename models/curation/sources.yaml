@@ -10,130 +10,130 @@ sources:
         columns:
           - name: host_id
             description: "Identifiant unique de l'hôte"
-            # tests:
-            #   - unique
-            #   - not_null
+            tests:
+               - unique
+               - not_null
           - name: host_name
             description: "Nom de l'hôte"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: host_since
             description: "Date d'inscription de l'hôte"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: host_location
             description: "Ville et pays de l'hôte"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: host_is_superhost
             description: "Indicateur si l'hôte a le statut superhost"
-            # tests:
-            #   - not_null
-            #   - accepted_values:
-            #       arguments:
-            #         values: ['t', 'f']
+            tests:
+               - not_null
+               - accepted_values:
+                   arguments:
+                     values: ['t', 'f']
           - name: host_neighbourhood
             description: "Quartier de l'hôte"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: host_identity_verified
             description: "Indicateur si l'identité de l'hôte a été vérifiée"
-            # tests:
-            #   - not_null
-            #   - accepted_values:
-            #       arguments:
-            #         values: ['t', 'f']
+            tests:
+               - not_null
+               - accepted_values:
+                   arguments:
+                     values: ['t', 'f']
 
       - name: listings
         description: "description d'un bien en location sur airbnb"
         columns:
           - name: id
             description: "identifiant unique de la presention"
-            # tests:
-            #   - not_null
-            #   - unique
+            tests:
+               - not_null
+               - unique
           - name: listing_url
             description: "url de la présentation"
-            # tests:
-            #   - not_null
-            #   - unique
+            tests:
+               - not_null
+               - unique
           - name: name
             description: "nom de la présentation"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: description
             description: "description de la location -- i.e la présentation en elle_même"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: neighbourhood_overview
             description: "descritption rapide du quartier"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: host_id
             description: "identifiant de l'hote qui met en location le bien décrit dans cette présentation"
-            # tests:
-            #   - relationships:
-            #       to: ref('host')
-            #       field: host_id
+            tests:
+               - relationships:
+                   to: ref('host')
+                   field: host_id
           - name: latitude
             description: "coordonnée du bien : latitude"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: longitude
             description: "coordonnée du bien : longitude"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: property_type
             description: "type de bien mis en location"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: room_type
             description: "type de pièce du bien mis en location"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: accomodates
             description: "capacité d'accueil"
-            # tests:
-            #   - not_null
+            tests:
+              - not_null
           - name: bathrooms
             description: "nombre de salles de bain"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: bedrooms
             description: "nombre de chambres"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: beds
             description: "nombre de lit"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: amenities
             description: "équipements"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: price
             description: "tarif de la location"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: minimum_nights
             description: "nombre de nuités minimum"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
           - name: maximum_nights
             description: "nombre de nuités maximum"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
 
       - name: reviews
         description: "date d'un avis"
         columns:
           - name: listing_id
             description: " l'annonce sur laquelle porte cet avis"
-            # tests:
-            #   - relationships:
-            #       to: ref('listings')
-            #       field: host_id
+            tests:
+               - relationships:
+                   to: ref('listings')
+                   field: host_id
           - name: date
             description: " date de l'avis"
-            # tests:
-            #   - not_null
+            tests:
+               - not_null
