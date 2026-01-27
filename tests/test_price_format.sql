@@ -1,3 +1,4 @@
+{{ config(store_failures = true) }}
 -- test le format du prix  dddddd.ddd
 --  [espace] .ddd
 SELECT *

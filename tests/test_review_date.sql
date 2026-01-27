@@ -1,3 +1,4 @@
+{{ config(store_failures = true) }}
 -- test si la date host_since est valide 
 -- pas dans le futur, pas trop loin dans le passé et au bon format 
 SELECT *

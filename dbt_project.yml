@@ -43,10 +43,16 @@ models:
       #+enabled: false
     # Applies to all files under models/example/
 
+# configuration de la seed
 seeds:
   analyse_airbnb:
     tourists_per_year:
       +enabled: true
       +database: airbnb
       +schema: raw
+
+# configuration pour les echecs de tests de qualité
+data_tests:
+  +store_failures: true     # tous les tests stockent leurs échecs
+  +schema: data_quality_tests # le shema où l'on stocke les échecs
    
