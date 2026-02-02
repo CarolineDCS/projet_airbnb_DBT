@@ -1,6 +1,6 @@
 {{
     config(
-        schema=var("curation_schema","curation_dev")
+        schema=var("curation_schema","curation")
     )
 }}
 
