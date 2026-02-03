@@ -2,7 +2,7 @@ WITH hosts AS(
     SELECT 
         host_id,
         host_neighbourhood as neighbourhood
-    FROM {{ ref("curation_host") }} 
+    FROM {{ ref("curation_hosts") }} 
 ),
 listings AS(
     SELECT
@@ -12,7 +12,7 @@ listings AS(
         accommodates,
         price,
         {{ prix_par_personne('price', 'accommodates') }} as prix_par_personne
-    FROM {{ ref("curation_listening") }}
+    FROM {{ ref("curation_listings") }}
 )
 SELECT 
     h.neighbourhood,

@@ -3,9 +3,9 @@ version: 2
 sources:  
   - name: raw_airbnb_data
     database: airbnb
-    schema: curation
+    schema: curation_dev
     tables:
-      - name: curation_host
+      - name: curation_hosts
         description: "Personne mettant en location des biens sur airbnb"
         columns:
           - name: host_id
@@ -59,7 +59,7 @@ sources:
                      values: ['t', 'f']
 
 
-      - name: curation_listening
+      - name: curation_listings
         description: "description d'un bien en location sur airbnb"
         columns:
           - name: listing_id
@@ -101,7 +101,7 @@ sources:
             tests:
                - dbt_utils.relationships_where:
                     arguments:
-                        to: ref('curation_host')
+                        to: ref('curation_hosts')
                         field: host_id
           - name: latitude
             description: "coordonnée du bien : latitude"
@@ -198,7 +198,7 @@ sources:
             tests:
                - dbt_utils.relationships_where:
                   arguments:
-                      to: ref('curation_listening')
+                      to: ref('curation_listings')
                       field: listing_id
           - name: review_date
             description: " date de l'avis"
@@ -212,7 +212,7 @@ sources:
 unit_tests:
   - name: test_is_host_data_transformation_correct
     description: "Vérifie que host_name, host_city, host_country et response_rate sont créés correctement"
-    model: curation_host
+    model: curation_hosts
     given:
       - input: ref('hosts_snapshot')
         rows:
@@ -227,12 +227,12 @@ unit_tests:
 
   - name: test_is_listening_data_transformation_correct
     description: "Vérifie que le prix est bien créé correctement"
-    model: curation_listening
+    model: curation_listings
     given:
-      - input: ref('curation_host')
+      - input: ref('curation_hosts')
         rows: 
             - {host_id : 'host_id'}
-      - input: ref("listening_snapshot")
+      - input: ref("listings_snapshot")
         rows: 
             - {price : '$3.12', DBT_VALID_TO: NULL, id: 'id1', listing_url: 'https://adresse1', name: 'nom', host_id: 'host_id', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
             - {price : '$0.12', DBT_VALID_TO: NULL,  id: 'id2', listing_url: 'https://adresse2', name: 'nom', host_id: 'host_id', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
@@ -249,7 +249,7 @@ unit_tests:
     description: "Vérifie l'agrégation quotidienne des reviews par listing_id"
     model: curation_reviews
     given:
-      - input: ref('curation_listening')
+      - input: ref('curation_listings')
         rows:
           - {listing_id: 'listing_1'}
           - {listing_id: 'listing_2'}

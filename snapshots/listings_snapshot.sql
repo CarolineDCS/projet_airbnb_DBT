@@ -1,4 +1,4 @@
-{% snapshot listening_snapshot %}
+{% snapshot listings_snapshot %}
 
     {{
         config(

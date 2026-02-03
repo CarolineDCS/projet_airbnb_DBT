@@ -6,7 +6,7 @@
 WITH
     to_join_verified AS
     (SELECT host_id
-    FROM  {{ ref("curation_host")}} ),
+    FROM  {{ ref("curation_hosts")}} ),
     listings_raw AS 
 	(SELECT 
 		id AS listing_id,
@@ -28,7 +28,7 @@ WITH
 		amenities,
         {{ extraire_prix_a_partir_dun_caractere('price', '$') }} as price,
         maximum_nights
-	FROM {{ ref("listening_snapshot")}}
+	FROM {{ ref("listings_snapshot")}}
     WHERE DBT_VALID_TO IS NULL
     AND host_id IN (SELECT host_id FROM to_join_verified) 
     )

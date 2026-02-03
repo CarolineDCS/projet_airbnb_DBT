@@ -5,7 +5,7 @@
 }}
 WITH to_join_verified AS
     (SELECT listing_id
-    FROM  {{ ref("curation_listening")}} ),
+    FROM  {{ ref("curation_listings")}} ),
  reviews_raw AS (
     SELECT 
         listing_id,
