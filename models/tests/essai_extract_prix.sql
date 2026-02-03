@@ -1,4 +1,9 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        schema=var("curation_schema","curation_dev"),
+        materialized='table'
+    )
+}}
 
 SELECT 
     '$ 1,234.56' as price_raw,
