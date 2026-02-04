@@ -1,13 +1,15 @@
 WITH caracteristiques_super_hote AS
 (
     SELECT
-        host_neighbourhood as neighbourhood,
-        count(CASE WHEN is_superhost = TRUE THEN 1 END) as nb_super_host,
-        count(host_id) as nb_host,
+        l.neighbourhood_cleansed as neighbourhood,
+        count(CASE WHEN h.is_superhost = TRUE THEN 1 END) as nb_super_host,
+        count(h.host_id) as nb_host,
         {{ pct_distribution('nb_super_host', 'nb_host') }} as pct_super_host,
         RANK() OVER (ORDER BY pct_super_host ASC) AS sales_rank
-    FROM {{ ref("curation_hosts")}}
-    GROUP BY  neighbourhood 
+    FROM {{ ref("curation_hosts")}} as h
+    INNER JOIN {{ ref("curation_listings")}} as l
+    ON h.host_id = l.host_id
+    GROUP BY neighbourhood
 ),
 caracteristiques_au_niveau_de_la_ville AS
 (
@@ -35,4 +37,5 @@ UNION ALL
     q.pct_super_host,
     q.sales_rank
 FROM caracteristiques_super_hote as q
+
 )

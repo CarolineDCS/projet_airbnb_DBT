@@ -17,6 +17,7 @@ WITH
 		neighbourhood_overview,
 		neighbourhood_overview IS NOT NULL AS has_neighbourhood_description,
 		host_id,
+		neighbourhood_cleansed,
 		latitude,
 		longitude,
 		property_type,
@@ -24,9 +25,9 @@ WITH
 		accommodates,
 		bathrooms,
 		bedrooms,
-		beds,
 		amenities,
         {{ extraire_prix_a_partir_dun_caractere('price', '$') }} as price,
+		minimum_nights,
         maximum_nights
 	FROM {{ ref("listings_snapshot")}}
     WHERE DBT_VALID_TO IS NULL

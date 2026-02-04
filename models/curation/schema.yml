@@ -46,10 +46,6 @@ sources:
                - accepted_values:
                    arguments:
                      values: ['t', 'f']
-          - name: host_neighbourhood
-            description: "Quartier de l'hôte"
-            tests:
-               - not_null
           - name: is_identity_verified
             description: "Indicateur si l'identité de l'hôte a été vérifiée"
             tests:
@@ -103,6 +99,10 @@ sources:
                     arguments:
                         to: ref('curation_hosts')
                         field: host_id
+          - name: neighbourhood_cleansed
+            description: "quartier"
+            tests:
+              - not_null
           - name: latitude
             description: "coordonnée du bien : latitude"
             tests:
@@ -152,15 +152,7 @@ sources:
                - dbt_utils.accepted_range:
                   arguments:
                     min_value: 0
-                    inclusive: true 
-          - name: beds
-            description: "nombre de lit"
-            tests:
-               - not_null
-               - dbt_utils.accepted_range:
-                  arguments:
-                    min_value: 0
-                    inclusive: true 
+                    inclusive: true
           - name: amenities
             description: "équipements"
             tests:
@@ -216,9 +208,9 @@ unit_tests:
     given:
       - input: ref('hosts_snapshot')
         rows:
-          - {host_name: 'Jacko', host_location: "ville,pays", host_response_rate: '32%', DBT_VALID_TO: null, host_id: 'host_id', host_since: '2026-01-01',host_is_superhost: 't',host_neighbourhood: 'quartier',host_identity_verified: 't'} 
-          - {host_name: 'Xi', host_location: "ville,pays", host_response_rate: '32.03%', DBT_VALID_TO: null,  host_id: 'host_id', host_since: '2026-01-01',host_is_superhost: 't',host_neighbourhood: 'quartier',host_identity_verified: 't'}
-          - {host_name: 'J', host_location: "pays,ville", host_response_rate: '32.53%', DBT_VALID_TO: null,  host_id: 'host_id', host_since: '2026-01-01',host_is_superhost: 't',host_neighbourhood: 'quartier',host_identity_verified: 't'}
+          - {host_name: 'Jacko', host_location: "ville,pays", host_response_rate: '32%', DBT_VALID_TO: null, host_id: 'host_id', host_since: '2026-01-01',host_is_superhost: 't',host_identity_verified: 't'} 
+          - {host_name: 'Xi', host_location: "ville,pays", host_response_rate: '32.03%', DBT_VALID_TO: null,  host_id: 'host_id', host_since: '2026-01-01',host_is_superhost: 't',host_identity_verified: 't'}
+          - {host_name: 'J', host_location: "pays,ville", host_response_rate: '32.53%', DBT_VALID_TO: null,  host_id: 'host_id', host_since: '2026-01-01',host_is_superhost: 't',host_identity_verified: 't'}
     expect:
       rows:
         - {host_name: 'Jacko', host_city: 'ville', host_country: 'pays', response_rate: 32}
@@ -234,10 +226,10 @@ unit_tests:
             - {host_id : 'host_id'}
       - input: ref("listings_snapshot")
         rows: 
-            - {price : '$3.12', DBT_VALID_TO: NULL, id: 'id1', listing_url: 'https://adresse1', name: 'nom', host_id: 'host_id', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
-            - {price : '$0.12', DBT_VALID_TO: NULL,  id: 'id2', listing_url: 'https://adresse2', name: 'nom', host_id: 'host_id', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
-            - {price : '$3.0', DBT_VALID_TO: NULL, id: 'id3', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
-            - {price : '$123,333.0', DBT_VALID_TO: NULL, id: 'id4', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$3.12', DBT_VALID_TO: NULL, id: 'id1', listing_url: 'https://adresse1', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2,  amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$0.12', DBT_VALID_TO: NULL,  id: 'id2', listing_url: 'https://adresse2', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$3.0', DBT_VALID_TO: NULL, id: 'id3', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2,  amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$123,333.0', DBT_VALID_TO: NULL, id: 'id4', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2,  amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
     expect:
         rows:
             - {listing_id: 'id1', price: 3.12} 
@@ -267,7 +259,7 @@ unit_tests:
             - {listing_id: 'listing_1', review_date: '2025-01-16', number_reviews: 1}
             - {listing_id: 'listing_2', review_date: '2025-01-15', number_reviews: 1}
   - name: test_is_tourist_per_year_data_transformation_correct
-    description: "Vérifie que le prix est bien créé correctement"
+    description: "Vérifie que l'année est bien créé correctement"
     model: curation_tourists_per_year
     given:
       - input: ref("tourists_per_year")
@@ -277,3 +269,5 @@ unit_tests:
         rows:
           - {year: '2025-12-31'}
   
+
+

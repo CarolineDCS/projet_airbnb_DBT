@@ -14,7 +14,6 @@ WITH hosts_raw AS (
 		REPLACE(SPLIT_PART(host_location, ',', 2),' ','') AS host_country,
 		TRY_CAST(REPLACE(host_response_rate, '%', '') AS INTEGER) AS response_rate,
 		host_is_superhost = 't' AS is_superhost,
-		host_neighbourhood,
 		host_identity_verified = 't' AS is_identity_verified
     FROM {{ref("hosts_snapshot")}}
     WHERE DBT_VALID_TO IS NULL

@@ -1,15 +1,9 @@
-WITH hosts AS(
-    SELECT 
-        host_id,
-        host_neighbourhood as neighbourhood--,
---        host_city,
---        host_country
-    FROM {{ ref("curation_hosts") }} 
-),
+WITH      
 listings AS(
     SELECT
         listing_id, 
         host_id,
+        neighbourhood_cleansed as neighbourhood,
         room_type,
         accommodates,
         price,
@@ -17,9 +11,7 @@ listings AS(
     FROM {{ ref("curation_listings") }}
 )
 SELECT 
-   -- h.host_country,
-   -- h.host_city,
-    h.neighbourhood,
+    l.neighbourhood,
     count(l.listing_id) as nb_location, -- le nombre de loccation dans le quartier
     ROUND(AVG(l.price),2) as avg_prix_location, -- moyenne du prix de la location par quartier
     ROUND(AVG(l.prix_par_personne),2) as avg_prix_personne, -- moyenne du prix théorique par capacité maximale par personne
@@ -32,7 +24,5 @@ SELECT
     max(l.price) as max_prix_location, -- le prix de location maximum par quartier 
     max(l.price) - min(l.price) as etentue_prix_location, -- l'étendue du prix de location par quartier
     {{ pct_distribution("COUNT(CASE WHEN l.room_type='Entire home/apt' THEN 1 END)", "COUNT(l.listing_id)") }} as pct_entire_home -- pourcentage d'appartement à la location dans le quartier
-FROM  hosts as h
-INNER JOIN  listings as l
-ON h.host_id = l.host_id
-GROUP BY h.neighbourhood -- h.host_country, h.host_city, 
+FROM  listings as l
+GROUP BY l.neighbourhood 

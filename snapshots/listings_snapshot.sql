@@ -31,8 +31,7 @@
         AND bathrooms >=0
         AND bedrooms IS NOT NULL
         AND bedrooms >0
-		AND beds IS NOT NULL 
-        AND beds >0
+		AND neighbourhood_cleansed IS NOT NULL 
 		AND amenities IS NOT NULL
         AND price IS NOT NULL
         AND price RLIKE  '^\\$[[:space:]]*[0-9]{1,3}(,[0-9]{3})*(\\.[0-9]{0,2})?$'
@@ -42,5 +41,6 @@
         AND maximum_nights IS NOT NULL
         AND maximum_nights > 0
 		AND minimum_nights<= maximum_nights    
+
 
 {% endsnapshot %}

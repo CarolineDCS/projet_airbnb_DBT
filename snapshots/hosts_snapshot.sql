@@ -22,8 +22,7 @@
         AND host_location RLIKE '^[^0-9<>|\\?*",]+,[^0-9<>|\\?*",]+$'
         AND host_is_superhost IS NOT NULL
         AND (host_is_superhost LIKE 't' OR host_is_superhost LIKE 'f')
-        AND host_neighbourhood IS NOT NULL
-		AND host_identity_verified IS NOT NULL
+  		AND host_identity_verified IS NOT NULL
         AND (host_identity_verified LIKE 't' OR host_identity_verified LIKE 'f') 
 
 {% endsnapshot %}
