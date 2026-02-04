@@ -28,6 +28,7 @@ WITH
 		beds,
 		amenities,
         {{ extraire_prix_a_partir_dun_caractere('price', '$') }} as price,
+		minimum_nights,
         maximum_nights
 	FROM {{ ref("listings_snapshot")}}
     WHERE DBT_VALID_TO IS NULL
