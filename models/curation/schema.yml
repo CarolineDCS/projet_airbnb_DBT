@@ -152,14 +152,7 @@ sources:
                - dbt_utils.accepted_range:
                   arguments:
                     min_value: 0
-                    inclusive: true 
-          - name: beds
-            description: "nombre de lit"
-            tests:
-               - dbt_utils.accepted_range:
-                  arguments:
-                    min_value: 0
-                    inclusive: true 
+                    inclusive: true
           - name: amenities
             description: "équipements"
             tests:
@@ -233,10 +226,10 @@ unit_tests:
             - {host_id : 'host_id'}
       - input: ref("listings_snapshot")
         rows: 
-            - {price : '$3.12', DBT_VALID_TO: NULL, id: 'id1', listing_url: 'https://adresse1', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
-            - {price : '$0.12', DBT_VALID_TO: NULL,  id: 'id2', listing_url: 'https://adresse2', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
-            - {price : '$3.0', DBT_VALID_TO: NULL, id: 'id3', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
-            - {price : '$123,333.0', DBT_VALID_TO: NULL, id: 'id4', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, beds: 4, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$3.12', DBT_VALID_TO: NULL, id: 'id1', listing_url: 'https://adresse1', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2,  amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$0.12', DBT_VALID_TO: NULL,  id: 'id2', listing_url: 'https://adresse2', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2, amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$3.0', DBT_VALID_TO: NULL, id: 'id3', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2,  amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
+            - {price : '$123,333.0', DBT_VALID_TO: NULL, id: 'id4', listing_url: 'https://adresse3', name: 'nom', host_id: 'host_id', neighbourhood_cleansed: 'quartier', longitude: 180, latitude: -90.0, property_type: 'type', room_type: 'type', accommodates: 1, bathrooms: 2, bedrooms: 2,  amenities: 'amenties', minimum_nights: 1, maximum_nights: 1}  
     expect:
         rows:
             - {listing_id: 'id1', price: 3.12} 
@@ -276,4 +269,5 @@ unit_tests:
         rows:
           - {year: '2025-12-31'}
   
+
 
