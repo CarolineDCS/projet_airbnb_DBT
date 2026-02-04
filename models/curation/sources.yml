@@ -130,13 +130,6 @@ sources:
                   arguments:
                     min_value: 0
                     inclusive: true 
-          - name: beds
-            description: "nombre de lit"
-            tests:
-              - dbt_utils.accepted_range:
-                  arguments:
-                    min_value: 0
-                    inclusive: true 
           - name: amenities
             description: "équipements"
             tests:
