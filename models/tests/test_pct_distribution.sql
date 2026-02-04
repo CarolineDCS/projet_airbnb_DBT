@@ -1,7 +1,7 @@
 {{
     config(
         schema=var("curation_schema","curation_dev"),
-        materialized='table'
+        materialized='ephemeral'
     )
 }}
 
