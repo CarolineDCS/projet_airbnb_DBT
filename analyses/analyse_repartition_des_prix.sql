@@ -1,7 +1,9 @@
 WITH hosts AS(
     SELECT 
         host_id,
-        host_neighbourhood as neighbourhood
+        host_neighbourhood as neighbourhood--,
+--        host_city,
+--        host_country
     FROM {{ ref("curation_hosts") }} 
 ),
 listings AS(
@@ -15,6 +17,8 @@ listings AS(
     FROM {{ ref("curation_listings") }}
 )
 SELECT 
+   -- h.host_country,
+   -- h.host_city,
     h.neighbourhood,
     count(l.listing_id) as nb_location, -- le nombre de loccation dans le quartier
     ROUND(AVG(l.price),2) as avg_prix_location, -- moyenne du prix de la location par quartier
@@ -31,4 +35,4 @@ SELECT
 FROM  hosts as h
 INNER JOIN  listings as l
 ON h.host_id = l.host_id
-GROUP BY h.neighbourhood
+GROUP BY h.neighbourhood -- h.host_country, h.host_city, 
