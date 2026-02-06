@@ -30,10 +30,8 @@ WITH
 		l.minimum_nights,
         l.maximum_nights
 	FROM {{ ref("listings_snapshot")}} as l
-    INNER JOIN to_join_verified as h
-    ON l.host_id = h.host_id
-    WHERE DBT_VALID_TO IS NULL
-    -- un IN entraine un changement de type sous snowflake
-    )
+    WHERE l.DBT_VALID_TO IS NULL
+    AND l.host_id in (SELECT host_id FROM to_join_verified)
+)
 SELECT *
 FROM listings_raw
