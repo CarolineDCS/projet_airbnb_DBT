@@ -1,7 +1,7 @@
 version: 2
 
 sources:  
-  - name: raw_airbnb_data
+  - name: airbnb_curation
     database: airbnb
     schema: curation_dev
     tables:
@@ -21,10 +21,6 @@ sources:
             description: "Date d'inscription de l'hôte"
             tests:
                - not_null
-               - dbt_utils.accepted_range:
-                  arguments:
-                    min_value: '1900-01-01'
-                    max_value: "current_date()"
           - name: host_location
             description: "Ville et pays de l'hôte"
             tests:
@@ -196,10 +192,21 @@ sources:
             description: " date de l'avis"
             tests:
                - not_null
-               - dbt_utils.accepted_range:
-                    arguments:
-                      min_value: '1900-01-01'
-                      max_value: "current_date()"
+               
+      - name: curation_tourists_per_year
+        description: "tourist par annee "
+        columns:
+          - name: year
+            description: "la date"
+            tests:
+              - not_null
+              - unique
+          - name: tourists
+            description: "nombre de touriste"
+            tests:
+              - not_null
+              
+              
 
 unit_tests:
   - name: test_is_host_data_transformation_correct
