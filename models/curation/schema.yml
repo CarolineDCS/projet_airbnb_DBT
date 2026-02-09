@@ -265,6 +265,7 @@ unit_tests:
             - {listing_id: 'listing_1', review_date: '2025-01-15', number_reviews: 2}
             - {listing_id: 'listing_1', review_date: '2025-01-16', number_reviews: 1}
             - {listing_id: 'listing_2', review_date: '2025-01-15', number_reviews: 1}
+            
   - name: test_is_tourist_per_year_data_transformation_correct
     description: "Vérifie que l'année est bien créé correctement"
     model: curation_tourists_per_year

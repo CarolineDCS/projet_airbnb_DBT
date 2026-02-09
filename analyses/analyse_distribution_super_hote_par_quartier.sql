@@ -1,3 +1,5 @@
+{{ doc('super_hosts_quartiers') }}
+
 WITH caracteristiques_super_hote AS
 (
     SELECT

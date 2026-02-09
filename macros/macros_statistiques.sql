@@ -1,3 +1,5 @@
+{{ doc('macros_statistiques') }
+
 {% macro calcul_q1(nom_colonne) -%}
     -- pour calculer le premier quartile en fonction d'une colonne donnee nom_colonne
     PERCENTILE_DISC(0.25) WITHIN GROUP (ORDER BY {{ nom_colonne }})

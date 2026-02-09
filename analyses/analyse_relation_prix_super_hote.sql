@@ -1,3 +1,5 @@
+{{ doc('prix_superhost') }}
+
 SELECT  
     CASE
         WHEN h.is_superhost = TRUE THEN 'super hote'

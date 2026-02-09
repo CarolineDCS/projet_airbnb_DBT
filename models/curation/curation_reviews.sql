@@ -3,6 +3,10 @@
         schema=var("curation_schema","curation")
     )
 }}
+
+{{ doc('fct_reviews') }}
+
+
 WITH to_join_verified AS
     (SELECT listing_id
     FROM  {{ ref("curation_listings")}} ),

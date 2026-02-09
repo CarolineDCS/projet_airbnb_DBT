@@ -1,3 +1,5 @@
+{{ doc('prix_quartiers') }}
+
 WITH      
 listings AS(
     SELECT
