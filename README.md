@@ -39,7 +39,13 @@ Le projet est structuré autour du squelette standard de dbt, avec les dossiers 
 * Création des tests personalisés ([repertoire tests])(tests) afin de tester plus finement la qualité des données (notamment en vérifiant le format de ces dernières) 
 * Création des snapshots : En excluant les données ne vérifiant pas les tests précédents nous allons créer 3 snapshots, l'un pour les hôtes [hosts_snapshot](snapshots/hosts_snapshot.sql), l'un pour les annonces [listings_snaphots](snapshots/listings_snapshot.sql) et un denier pour les reviews [reviews_snaphot](snapshots/reviews_snapshot.sql)
 * Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seed/tourists_per_year.csv) L'année 2025 est une approximation comptant sur une augmentation de 3% du nombre de touristes par séjour.
-* Création des modèles ([repertoire models/curation])(models/curation)  
+* Création des modèles ([repertoire models/curation])(models/curation)
+  <picture>
+ <source media="(prefers-color-scheme: dark)" srcset="YOUR-DARKMODE-IMAGE">
+ <source media="(prefers-color-scheme: light)" srcset="YOUR-LIGHTMODE-IMAGE">
+ <img alt="YOUR-ALT-TEXT" src="YOUR-DEFAULT-IMAGE">
+</picture>
+
 
   
 
