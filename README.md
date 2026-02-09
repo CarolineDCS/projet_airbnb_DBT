@@ -18,10 +18,10 @@ Dans ce projet, j'ai créé une pipeline d'intégration de données de fichier d
 Le jeu de données a été téléchargé depuis le site https://insideairbnb.com/get-the-data/ qui regroupe les données Airbnb pour plusieurs villes. Pour notre travail, nous avons choisi la ville d'Amsterdam correspondant à un extrait du 11 septembre 2026.
 
 
-    Division du fichier listings.csv.gz en 2 fichiers:
-        ** [listings](../Airbnb_data/tree/main/listings.csv) avec un nombre de colonnes réduit et qui ne contient que les donneées qui touchent directement au listing (i.e. on a enlevé les données de l'hôte et sur les revues)
-        ** [hosts](../Airbnb_data/tree/main/hosts.csv) ce fichier, extrait du fichier listings.csv.gz, ne contient que les infos concernant l'hoôte. Ici aussi, nous avons limité le nombre de colonnes par rapport à toutes les infos qu'on avait
-        ** [reviews](../Airbnb_data/tree/main/reviews.csv) ce fichier a été téléchargé du jeu de données résumé où on n'a que 2 colonnes: le listing_id et la date du commentaire qui a été laissé.
+Division du fichier listings.csv.gz en 2 fichiers:
+* [listings](../Airbnb_data/tree/main/listings.csv) avec un nombre de colonnes réduit et qui ne contient que les donneées qui touchent directement au listing (i.e. on a enlevé les données de l'hôte et sur les revues)
+* [hosts](../Airbnb_data/tree/main/hosts.csv) ce fichier, extrait du fichier listings.csv.gz, ne contient que les infos concernant l'hoôte. Ici aussi, nous avons limité le nombre de colonnes par rapport à toutes les infos qu'on avait
+* [reviews](../Airbnb_data/tree/main/reviews.csv) ce fichier a été téléchargé du jeu de données résumé où on n'a que 2 colonnes: le listing_id et la date du commentaire qui a été laissé.
 
 
 ## Axes étudiés
@@ -33,5 +33,11 @@ Le jeu de données a été téléchargé depuis le site https://insideairbnb.com
   * fichier concerné :  [chargement_donnees.sql](Snowflake/chargement_donnees.sql)
 
 ### Vison Data Engineer 
-* Création des snapsh
+Le projet est structuré autour du squelette standard de dbt, avec les dossiers principaux models, tests, seeds, snapshots, macros, ainsi que le fichier central dbt_project.yml pour la configuration globale du projet. La logique suit un flux ELT complet : les données brutes sont d’abord chargées dans Snowflake, puis font l’objet de transformations progressives dans dbt jusqu’aux modèles analytiques finaux, directement exploitables pour l’exploration et l’analyse.
+
+* Création du fichier [sources.yml](models/curation/sources.yml) afin de tester la qualité des données des tables du schema RAW
+* Création des tests personalisés ([repertoire tests])(tests) afin de tester plus finement la qualité des données (notamment en vérifiant le format de ces dernières) 
+* Création des snapshots : En excluant les données ne vérifiant pas les tests précédents nous allons créer 3 snapshots, l'un pour les hôtes [hosts_snapshot](snapshots/hosts_snapshot.sql), l'un pour les annonces [listings_snaphots](snapshots/listings_snapshot.sql) et un denier pour les reviews [reviews_snaphot](snapshots/reviews_snapshot.sql)
+* Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seed/tourists_per_year.csv) L'année 2025 est une approximation comptant sur une augmentation de 3% du nombre de touristes par séjour.
+* Création des modèles 
 
