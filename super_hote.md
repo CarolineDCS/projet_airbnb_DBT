@@ -6,7 +6,7 @@
 ## Logique d'analyse
 **Dataset** : Annonces Airbnb Amsterdam uniquement (curation_hosts x curation_listings)
 
-* Par quartier : % Super Hôtes + RANK() croissant (pires → meilleurs)
+* Par quartier : % Super Hôtes + RANK() croissant ( pourcentage dde super hotes du plus petit au plus grand)
 
 *  Amsterdam globale : benchmark ville entière
 
