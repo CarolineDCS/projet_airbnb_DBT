@@ -47,13 +47,13 @@ SELECT
     e.year,
 
    ROUND({{ pct_distribution('e.nb_tourist_ratio_50pct', 'c.tourists') }}, 2) as pct_tourist_per_year_ratio50pct, 
-   LAG(pct_tourist_per_year_ratio50pct) OVER (ORDER BY e.year) as previous_year_ratio50pct,
+--   LAG(pct_tourist_per_year_ratio50pct) OVER (ORDER BY e.year) as previous_year_ratio50pct,
     ROUND(
         (pct_tourist_per_year_ratio50pct / NULLIF(LAG(pct_tourist_per_year_ratio50pct) OVER (ORDER BY e.year), 0) - 1) * 100, 1
     ) as yoy_pct_ratio50pct, 
 
    ROUND({{ pct_distribution('e.nb_tourist_ratio_80pct', 'c.tourists') }}, 2) as pct_tourist_per_year_ratio80pct,
-   LAG(pct_tourist_per_year_ratio80pct) OVER (ORDER BY e.year) as previous_year_ratio80pct,
+--   LAG(pct_tourist_per_year_ratio80pct) OVER (ORDER BY e.year) as previous_year_ratio80pct,
     ROUND(
         (pct_tourist_per_year_ratio80pct / NULLIF(LAG(pct_tourist_per_year_ratio80pct) OVER (ORDER BY e.year), 0) - 1) * 100, 1
     ) as yoy_pct_ratio80pct, 
