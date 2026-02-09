@@ -5,9 +5,12 @@
 
 ## Logique d'estimation (5 étapes)
 
-*    % illégaux : 5.96% listings >4pax (limite Amsterdam)
+*    pourcentage illégaux : 5.96% listings >4 personnes par Airbnb (limite Amsterdam)
 
-*    Nb locataires estimés : accommodates × 0.75 (realistic fill rate)
+*    Nb locataires estimés :
+     * accommodates × 0.75 (realistic fill rate) pour 2 à 4 locataires permis
+     * 1 s'il ne peut avoir plus de locataire
+     *  4 pour les locations illégales (pour plus de 4 personnes) afin qu'elles n'influencent pas trop les résultats
 
 *    Nb séjours estimés : reviews annuelles × 0.5/0.8 (taux conversion)
   * le ratio 0.5 est celui proposé par le site qui fournit les datas
