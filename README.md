@@ -23,7 +23,7 @@ Division du fichier listings.csv.gz en 2 fichiers:
   * [hosts](https://github.com/CarolineDCS/Airbnb_data/blob/main/hosts.csv) ce fichier, extrait du fichier listings.csv.gz, ne contient que les infos concernant l'hoôte. Ici aussi, nous avons limité le nombre de colonnes par rapport à toutes les infos qu'on avait
   * [reviews](https://github.com/CarolineDCS/Airbnb_data/blob/main/reviews.csv) ce fichier a été téléchargé du jeu de données résumé où on n'a que 2 colonnes: le listing_id et la date du commentaire qui a été laissé.
 
-* Jeu de données du nombre de touriste par séjour à Amsterdam par année : [touristes par an](seeds/tourists_per_year.csv) 
+* Jeu de données du nombre de touriste par séjour à Amsterdam par année : [touristes par an](seeds/tourists_per_year.csv)  L'année 2025 est une approximation comptant sur une augmentation de 3% du nombre de touristes par séjour.
 
 
 ## Axes étudiés
@@ -40,7 +40,7 @@ Le projet est structuré autour du squelette standard de dbt, avec les dossiers 
 * Création du fichier [sources.yml](models/curation/sources.yml) afin de tester la qualité des données des tables du schema RAW
 * Création des tests personalisés ([repertoire tests])(tests) afin de tester plus finement la qualité des données (notamment en vérifiant le format de ces dernières) 
 * Création des snapshots : En excluant les données ne vérifiant pas les tests précédents nous allons créer 3 snapshots, l'un pour les hôtes [hosts_snapshot](snapshots/hosts_snapshot.sql), l'un pour les annonces [listings_snaphots](snapshots/listings_snapshot.sql) et un denier pour les reviews [reviews_snaphot](snapshots/reviews_snapshot.sql)
-* Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seed/tourists_per_year.csv) L'année 2025 est une approximation comptant sur une augmentation de 3% du nombre de touristes par séjour.
+* Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seeds/tourists_per_year.csv)
 * Création des modèles ([repertoire models/curation])(models/curation) ainsi que des tests de validité de données ([repertoire tests])(tests) et [schema.yml][models/curation/schema.yml]
   <picture>
  <img alt="lineage_dbt" src="images/lineage.png" title="Le lineage du projet">
