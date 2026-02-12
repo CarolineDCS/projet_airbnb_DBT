@@ -3,9 +3,14 @@
 ## Objectif métier
 **Quantifie la part des touristes Airbnb** vs tourisme total à Amsterdam par année.
 
+## Data set utilisés
+
+* [listings airbnb](https://github.com/CarolineDCS/Airbnb_data/blob/main/listings.csv) (Amsterdam uniquement)
+* [touristes par an ](../seeds/tourists_per_year.csv) (Amsterdam uniquement)
+ 
 ## Logique d'estimation (5 étapes)
 
-*    pourcentage illégaux : 5.96% listings pour plus de 4 personnes par Airbnb (Amsterdam ne permet pas plus de 4 locataires par Airbnb.)
+*    pourcentage de listing illégaux : 5.96% listings pour plus de 4 personnes par Airbnb (Amsterdam ne permet pas plus de 4 locataires par Airbnb.)
 
 *    Nombre de locataires estimés :
      * accommodates × 0.75 (taux réaliste) pour 2 à 4 locataires possibles
