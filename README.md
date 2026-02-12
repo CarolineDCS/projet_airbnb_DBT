@@ -43,14 +43,24 @@ Le projet est structuré autour du squelette standard de dbt, avec les dossiers 
 * Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seed/tourists_per_year.csv) L'année 2025 est une approximation comptant sur une augmentation de 3% du nombre de touristes par séjour.
 * Création des modèles ([repertoire models/curation])(models/curation) ainsi que des tests de validité de données ([repertoire tests])(tests) et [schema.yml][models/curation/schema.yml]
   <picture>
- <img alt="lineage_dbt" src="lineage.png">
+ <img alt="lineage_dbt" src="images/lineage.png" title="Le lineage du projet">
 </picture>
 
 ### Vision  Analytics Engineer
-* Analyse de la distribution des prix par quartier à Amsterdam.
-* Distribution des super-hôtes Airbnb par quartier à Amsterdam.
-* Étude de la relation entre la qualification super-hôte et le prix.
-* Étude du nombre de touristes passant par Airbnb pour se loger à Amstedam. 
+* Analyse de la distribution des prix par quartier à Amsterdam ([Explications])(docs/prix_quartier.md).
+   * Resultats : [fichier csv](images/prix_quartier.csv)  
+* Analyse de la disistribution des super-hôtes Airbnb par quartier à Amsterdam ([Explications])(docs/super_hote.md).
+    <picture>
+ <img alt="Résultat de l'analyse de la distribution des super-hôtes Airbnb par quartier à Amsterdam." src="images/repartion_super_host.png" title="Risistribution des super-hôtes Airbnb par quartier à Amsterdam" >
+</picture>
+* Étude de la relation entre la qualification super-hôte et le prix ([Explications])(docs/prix_super_hote.md).
+ <picture>
+ <img alt="Résultat de l'analyse de la relation entre la qualification super-hôte et le prix à Amsterdam." src="images/prix_super_hote.png" title="Relation entre la qualification super-hôte et le prix à Amsterdam" >
+</picture>
+* Étude du nombre de touristes passant par Airbnb pour se loger à Amstedam ([Explications])(docs/nb_tourist_airbnb.md). 
+* <picture>
+ <img alt="Résultat de l'analyse du nombre de touristes passant par Airbnb pour se loger à Amstedam." src="images/toursistes_airbnb.png" title=" Nombre de touristes passant par Airbnb pour se loger à Amstedam" >
+</picture>
 
 
 ## Mise en place du projet
