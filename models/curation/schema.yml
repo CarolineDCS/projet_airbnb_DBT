@@ -1,5 +1,7 @@
 version: 2
 
+
+
 sources:  
   - name: airbnb_curation
     database: airbnb
