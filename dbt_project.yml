@@ -40,8 +40,7 @@ models:
     curation:
       +materialized: table
       +schema: curation
-      #+enabled: false
-    # Applies to all files under models/example/
+      
 
 # configuration de la seed
 seeds:
@@ -62,4 +61,5 @@ vars:
     curation_schema: curation_dev
     inc_database: airbnb
     inc_schema: curation_inc
+
    
