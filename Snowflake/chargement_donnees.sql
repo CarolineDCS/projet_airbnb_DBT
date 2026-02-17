@@ -16,7 +16,7 @@ type = csv
 skip_header = 1
 field_optionally_enclosed_by = '"';
 
-DROP TABLE HOSTS;
+
 CREATE TABLE AIRBNB.RAW.HOSTS
 (
     host_id                STRING,
