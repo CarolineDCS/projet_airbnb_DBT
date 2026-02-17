@@ -37,11 +37,11 @@ Division du fichier listings.csv.gz en 2 fichiers:
 ### Vison Data Engineer 
 Le projet est structuré autour du squelette standard de dbt, avec les dossiers principaux models, tests, seeds, snapshots, macros, ainsi que le fichier central dbt_project.yml pour la configuration globale du projet. La logique suit un flux ELT complet : les données brutes sont d’abord chargées dans Snowflake, puis font l’objet de transformations progressives dans dbt jusqu’aux modèles analytiques finaux, directement exploitables pour l’exploration et l’analyse.
 
-* Création du fichier [sources.yml](models/curation/sources.yml) afin de tester la qualité des données des tables du schema RAW
+* Création du fichier [sources.yml](models/sources.yml) afin de tester la qualité des données des tables du schema RAW
 * Création des tests personalisés ([repertoire tests])(tests) afin de tester plus finement la qualité des données (notamment en vérifiant le format de ces dernières) 
 * Création des snapshots : En excluant les données ne vérifiant pas les tests précédents nous allons créer 3 snapshots, l'un pour les hôtes [hosts_snapshot](snapshots/hosts_snapshot.sql), l'un pour les annonces [listings_snaphots](snapshots/listings_snapshot.sql) et un denier pour les reviews [reviews_snaphot](snapshots/reviews_snapshot.sql)
-* Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seeds/tourists_per_year.csv)
-* Création des modèles ([repertoire models/curation])(models/curation) ainsi que des tests de validité de données ([repertoire tests])(tests) et [schema.yml][models/curation/schema.yml] .
+* Création de la seed pour récupérer le nombre de touristes à Amsterdam par **séjour** et par an [tourists_per_year](seeds/tourists_per_year.csv), et la seed [tests_stat_prix.csv](seeds/tests/tests_stat_prix.csv) pour tester les macros statistique ([macros_statistiques.sql](macros/macros_statistiques.sql)).
+* Création des modèles ([repertoire models/curation](models/curation)),de modèles ([repertoire models/tests](models/tests)) pour tester les macros ([repertoire macros](macros)), ainsi que des tests de validité de données ([repertoire tests])(tests) et [schema.yml](models/curation/schema.yml) .
   <picture>
  <img alt="lineage_dbt" src="images/lineage.png" title="Le lineage du projet">
 </picture>
