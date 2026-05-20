@@ -1,3 +1,57 @@
+# Analysis: Airbnb's Share of Tourism in Amsterdam
+
+## Business Objective
+**Quantify the share of Airbnb tourists** relative to total tourism in Amsterdam by year.
+
+## Datasets Used
+
+* [Airbnb listings](https://github.com/CarolineDCS/Airbnb_data/blob/main/listings.csv) (Amsterdam only)
+* [tourists per year ](../seeds/tourists_per_year.csv) (Amsterdam only)
+ 
+## Estimation logic (5 steps)
+
+*    Percentage of illegal listings: 5.96% of listings for more than 4 people per Airbnb (Amsterdam does not allow more than 4 guests per Airbnb.)
+
+*    Estimated number of guests:
+     * accommodates × 0.75 (realistic rate) for 2 to 4 possible guests
+     * 1 if no more than one guest is allowed
+     *  4 for illegal listings (for more than 4 people) so they do not overly influence the results
+
+*    Estimated number of stays: annual reviews × 0.5/0.8 (conversion rate)
+  * the 0.5 ratio is the one proposed by the site providing the data
+  * the 0.8 ratio is the one reported by hosts (Reddit, etc.)
+
+*    Number of Airbnb tourists: estimated number of stays × estimated number of guests
+
+*    Percentage of tourists in Amsterdam staying in an Airbnb (per stay): Number of Airbnb tourists in Amsterdam ÷ official number of tourists in Amsterdam
+
+
+## CTE Details 
+| Step | Key Calculation |
+|-------|------------|
+| `tenant_estimate` | `accommodates × 0.75` (realistic ratio) |
+| `rental_estimate` | `reviews × 0.5/0.8` (estimated rentals) |
+| `tourist_estimate` | Airbnb tourists per listing per year |
+| Final | % Airbnb vs. official tourism + YoY |
+
+## Final Metrics (4 columns per year)
+| Column | Meaning |
+|---------|---------------|
+| `pct_tourist_per_year_ratio50pct` | Airbnb share with a 0.5 ratio |
+| `yoy_pct_ratio50pct` | Year-over-year change with a 0.5 ratio |
+| `pct_tourist_per_year_ratio80pct` | Airbnb share with a 0.8 ratio |
+| `yoy_pct_ratio80pct` | Year-over-year change with a ratio of 0.8 |
+
+## Usage
+
+* Insight: 
+  * Airbnb accounts for X% of tourism in Amsterdam
+  * Change in this percentage
+* Chart: Line chart showing Airbnb % vs. total tourism (2019–2025)
+
+## Note
+Please note that the year 2025 is incomplete; for Airbnb data, it ends on September 11, 2025. However, the number of tourists in Amsterdam covers the entire year 2025.
+
 # Analyse : Part de location Airbnb dans le tourisme à Amsterdam
 
 ## Objectif métier
