@@ -1,3 +1,71 @@
+# Statistical Macros for Rental Price Analysis
+
+A set of **5 reusable macros** for Airbnb statistical analysis (box plots, distributions).
+
+## Available Macros
+
+### calcul_q1(column_name)
+
+* PERCENTILE_DISC(0.25) WITHIN GROUP (ORDER BY column_name)
+
+* 1st quartile (25th percentile) → left side of the boxplot
+
+### calcul_q3(column_name)
+
+
+ * PERCENTILE_DISC(0.75) WITHIN GROUP (ORDER BY column_name)
+
+* 3rd quartile (75th percentile) → right side of the boxplot
+
+### inter_quartile (column_name)
+
+* q3_calc(column_name) - q1_calc(column_name)
+
+* Interquartile range = width of the boxplot
+
+ ### distribution_pct(category_count, total)
+
+* ROUND(100.0 * category_count / total, 2)
+
+* Percentage rounded to 2 decimal places
+
+ ### stddev_safe(column_name)
+
+* CASE WHEN COUNT(DISTINCT column_name) <= 1 THEN 0 
+     ELSE STDDEV(column_name) 
+END
+
+* Safe standard deviation: returns 0 if all values are identical (avoids NULL)
+
+## Advantages
+
+
+* Complete boxplot: Q1/Q3/interquartile
+* Percentages always rounded
+* Robust standard deviation (handles identical values)
+* Nested macros (inter_quartile = Q3-Q1)
+
+# Macro: Price per Person
+
+## Objective
+**Calculates the unit price per person** for standardizing Airbnb rates.
+
+## Syntax
+{{ price_per_person(‘l.price’, ‘l.accommodates’) }}
+
+## Logic
+
+
+* price_per_person = price_column_name / number_of_people_column_name
+
+* Example: €150 / 4 people = €37.50/person
+
+## Benefits
+
+* Fair comparison: rental for 1 person vs. rental for 4 people
+* Price analysis per person (more relevant than the total price)
+* Can be used with all listing templates 
+
 # Macros Statistiques pour analyses des prix de location
 
 Ensemble de **5 macros réutilisables** pour analyses statistiques Airbnb (boxplots, distributions).
