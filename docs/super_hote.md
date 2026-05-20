@@ -1,3 +1,44 @@
+# Analysis: Distribution of Superhosts by Amsterdam Neighborhood
+
+## Business Objective
+**Rank Amsterdam neighborhoods** by **percentage of Superhosts** to identify **premium areas**.
+
+## Analysis Logic
+**Dataset**: 
+* [airbnb hosts](https://github.com/CarolineDCS/Airbnb_data/blob/main/hosts.csv) (Amsterdam only)
+*  [airbnb listings](https://github.com/CarolineDCS/Airbnb_data/blob/main/listings.csv) (Amsterdam only)
+
+* By neighborhood: percentage of Superhosts + ascending rank (percentage of Superhosts from lowest to highest)
+
+ 
+## CTE details 
+| CTE | Role |
+|-----|------|
+| `superhost_characteristics` |  percentage + rank by neighborhood** |
+| `city_wide_characteristics` | percentage + rank across all Amsterdam data |
+
+## Calculated metrics
+
+* pct_super_host = {{ pct_distribution(nb_super_host, nb_host) }}
+* sales_rank = RANK() OVER (ORDER BY pct_super_host ASC)
+
+
+
+## Final result (5 columns)
+| Column | Meaning |
+|---------|---------------|
+| `neighborhood` | ‘Entire city’ + Amsterdam neighborhoods |
+| `nb_super_host` | Number of Superhosts |
+| `nb_host` | Total number of hosts |
+| `pct_super_host` | Percentage of Superhosts |
+| `sales_rank` | 1 = fewest Superhosts, N = most Superhosts |
+
+## Usage
+
+* Dashboard: “Amsterdam Superhost Map”
+* Insight: Where are Superhosts concentrated?
+
+
 # Analyse : Répartition Super Hôtes par Quartier d'Amsterdam
 
 ## Objectif métier
