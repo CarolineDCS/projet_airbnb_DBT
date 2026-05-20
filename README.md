@@ -46,12 +46,19 @@ The project is structured around the standard dbt skeleton, with the main folder
    * Results: [CSV file](images/prix_quartier.csv)  
 * Analysis of the distribution of Airbnb Superhosts by neighborhood in Amsterdam ([Explanations])(docs/super_hote.md).
     <picture>
- <img alt="Results of the analysis of the distribution of Airbnb Superhosts by neighborhood in Amsterdam." src="images/repartition_super_host.png" title="Distribution of Airbnb Superhosts by neighborhood in Amsterdam" >
+     <img alt="Résultat de l'analyse de la distribution des super-hôtes Airbnb par quartier à Amsterdam." src="images/repartion_super_host.png" title="Risistribution des super-hôtes Airbnb par quartier à Amsterdam" >
 </picture>
 * Study of the relationship between Superhost status and price ([Explanations])(docs/prix_super_hote.md).
  <picture>
- <img alt="Results of the analysis of the number of tourists using Airbnb to find accommodation in Amsterdam." src="images/toursistes_airbnb.png" title="Number of tourists using Airbnb to find accommodation in Amsterdam" >
+ <img alt="Résultat de l'analyse de la relation entre la qualification super-hôte et le prix à Amsterdam." src="images/prix_super_hote.png" title="Relation entre la qualification super-hôte et le prix à Amsterdam" >
 </picture>
+* Study of the number of tourists using Airbnb for accommodation in Amsterdam ([Explications])(docs/nb_tourist_airbnb.md). 
+* <picture>
+ <img alt="Résultat de l'analyse du nombre de touristes passant par Airbnb pour se loger à Amstedam." src="images/toursistes_airbnb.png" title=" Nombre de touristes passant par Airbnb pour se loger à Amstedam" >
+</picture>
+
+
+ 
 
 
 ## Setting up the project
