@@ -1,3 +1,44 @@
+# Analysis: Price Distribution by Neighborhood in Amsterdam 
+
+## Business Objective
+**Comprehensive Airbnb price statistics** by neighborhood in Amsterdam to create a **box plot** and provide pricing insights.
+
+## Analysis Logic
+Dataset: [Airbnb listings](https://github.com/CarolineDCS/Airbnb_data/blob/main/listings.csv) (Amsterdam only)
+
+listings 
+-> Calculate price per person per rental
+-> GROUP BY neighborhood
+-> 14 statistical metrics + percentage of ‘Entire home/apt’ listings
+
+
+## Metrics calculated by neighborhood
+| Metric | Boxplot/Stat Role |
+|----------|------------------|
+| `avg_rental_price` | Average rental price |
+| `median_rental_price` | Median rental price (boxplot line) |
+| `Q1_rental_price` / `Q3_rental_price` | Q1 and Q3: Boxplot boxes |
+| `interquartile_range_rental_price` | Interquartile range: length of the boxplot box |
+| `range_rental_price` | Total dispersion |
+| `min_rental_price` / `max_rental_price` | Boxplot whiskers |
+| `rental_price_range` | Full range |
+
+## Main columns
+
+* nb_location → Volume per neighborhood
+* avg_rental_price → Average price per neighborhood
+* median_rental_price → Median price per neighborhood (more robust)
+* Q1/Q3_rental_price/interquartile → Boxplot
+* price_standard_dev → Variation around the mean
+* pct_entire_home → % of full-size apartments
+
+
+## Usage
+
+* Dashboard: Box plot of prices by neighborhood
+* Insight: “Which neighborhood has the greatest price variation?”
+* Comparison: Average price vs. median price (are there any outliers?)
+
 # Analyse : Distribution Prix par Quartier à Amsterdam 
 
 ## Objectif métier
